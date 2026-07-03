@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website Manager — Danilo's Flooring & Stairs</title>
+
+    <link rel="stylesheet" href="manager.css">
+</head>
+
+<body>
+
+    <header class="manager-header">
+        <div class="manager-brand">
+            <div class="manager-logo">D</div>
+
+            <div>
+                <strong>DANILO'S</strong>
+                <span>WEBSITE MANAGER</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <a id="viewWebsiteLink" href="#" target="_blank" rel="noopener">VIEW WEBSITE ↗</a>
+            <button id="logoutButton">LOG OUT</button>
+        </div>
+    </header>
+
+    <main class="manager">
+
+        <section class="manager-intro">
+            <p>PRIVATE ADMIN AREA</p>
+            <h1>WEBSITE<br><em>MANAGER.</em></h1>
+
+            <div class="intro-text">
+                Manage project photos and website content.
+                Changes are saved directly in your browser.
+            </div>
+        </section>
+
+        <section class="manager-section">
+
+            <div class="section-heading">
+                <span>01</span>
+
+                <div>
+                    <p>PROJECT CONTENT</p>
+                    <h2>PROJECT MANAGER</h2>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+
+                <article class="project-editor" data-project="1">
+                    <div class="image-preview">
+                        <img id="preview1" alt="Project preview">
+                        <span>01</span>
+                    </div>
+
+                    <div class="editor-content">
+                        <label>PROJECT PHOTO</label>
+                        <input type="file" id="image1" accept="image/*">
+
+                        <label>PROJECT NAME</label>
+                        <input type="text" id="title1" value="WARM MODERN LIVING">
+
+                        <label>PROJECT TYPE</label>
+                        <input type="text" id="type1" value="Residential Flooring">
+
+                        <button class="save-project" data-project="1">
+                            SAVE PROJECT
+                            <span>↗</span>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="project-editor" data-project="2">
+                    <div class="image-preview">
+                        <img id="preview2" alt="Project preview">
+                        <span>02</span>
+                    </div>
+
+                    <div class="editor-content">
+                        <label>PROJECT PHOTO</label>
+                        <input type="file" id="image2" accept="image/*">
+
+                        <label>PROJECT NAME</label>
+                        <input type="text" id="title2" value="REFINED STAIRCASE">
+
+                        <label>PROJECT TYPE</label>
+                        <input type="text" id="type2" value="Stair Installation">
+
+                        <button class="save-project" data-project="2">
+                            SAVE PROJECT
+                            <span>↗</span>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="project-editor" data-project="3">
+                    <div class="image-preview">
+                        <img id="preview3" alt="Project preview">
+                        <span>03</span>
+                    </div>
+
+                    <div class="editor-content">
+                        <label>PROJECT PHOTO</label>
+                        <input type="file" id="image3" accept="image/*">
+
+                        <label>PROJECT NAME</label>
+                        <input type="text" id="title3" value="NATURAL KITCHEN">
+
+                        <label>PROJECT TYPE</label>
+                        <input type="text" id="type3" value="Flooring Installation">
+
+                        <button class="save-project" data-project="3">
+                            SAVE PROJECT
+                            <span>↗</span>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="project-editor" data-project="4">
+                    <div class="image-preview">
+                        <img id="preview4" alt="Project preview">
+                        <span>04</span>
+                    </div>
+
+                    <div class="editor-content">
+                        <label>PROJECT PHOTO</label>
+                        <input type="file" id="image4" accept="image/*">
+
+                        <label>PROJECT NAME</label>
+                        <input type="text" id="title4" value="OPEN SPACE">
+
+                        <label>PROJECT TYPE</label>
+                        <input type="text" id="type4" value="Full Floor Replacement">
+
+                        <button class="save-project" data-project="4">
+                            SAVE PROJECT
+                            <span>↗</span>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+
+            <p id="saveMessage"></p>
+
+        </section>
+
+        <section class="manager-section">
+
+            <div class="section-heading">
+                <span>02</span>
+
+                <div>
+                    <p>WEBSITE IMAGES</p>
+                    <h2>ALL WEBSITE IMAGES</h2>
+                </div>
+            </div>
+
+            <div class="website-images-grid" id="websiteImagesGrid"></div>
+
+            <p id="imageManagerMessage"></p>
+
+        </section>
+
+    </main>
+
+    <script src="manager.js"></script>
+
+</body>
+</html>

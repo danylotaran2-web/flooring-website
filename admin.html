@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danilo's Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <main class="admin-login">
+
+        <div class="admin-brand">
+            <div class="admin-logo">D</div>
+
+            <div>
+                <h1>DANILO'S</h1>
+                <p>FLOORING & STAIRS</p>
+            </div>
+        </div>
+
+        <section class="login-card">
+
+            <p class="small-title">PRIVATE ADMIN AREA</p>
+
+            <h2>WELCOME BACK.</h2>
+
+            <p class="login-description">
+                Sign in to manage your website.
+            </p>
+
+            <form id="loginForm">
+
+                <label for="password">ADMIN PASSWORD</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit">
+                    ENTER ADMIN
+                    <span>↗</span>
+                </button>
+
+                <p id="loginError"></p>
+
+            </form>
+
+        </section>
+
+        <p class="admin-footer">
+            DANILO'S FLOORING & STAIRS · ADMIN
+        </p>
+
+    </main>
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
