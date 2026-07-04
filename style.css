@@ -861,6 +861,20 @@ img {
   line-height: 1.6;
 }
 
+.contact-language-notice {
+  margin-top: 34px;
+  max-width: 520px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.contact-language-notice p {
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .estimate-form {
   display: flex;
   flex-direction: column;
@@ -963,8 +977,16 @@ footer {
   letter-spacing: -0.04em;
 }
 
+.footer-languages {
+  margin-top: 56px;
+  max-width: 760px;
+  color: rgba(242, 239, 232, 0.86);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
 .footer-bottom {
-  margin-top: 120px;
+  margin-top: 34px;
   padding-top: 25px;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;

@@ -100,13 +100,22 @@ mobileLinks.forEach((link) => {
 });
 
 if (form && formMessage) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+  form.addEventListener("submit", () => {
+    const hiddenName = form.querySelector('input[name="name"]');
+    const hiddenService = form.querySelector('input[name="service"]');
+    const firstName = (form.querySelector('input[name="firstName"]')?.value || "").trim();
+    const lastName = (form.querySelector('input[name="lastName"]')?.value || "").trim();
+
+    if (hiddenName) {
+      hiddenName.value = `${firstName} ${lastName}`.trim();
+    }
+
+    if (hiddenService) {
+      hiddenService.value = "";
+    }
 
     formMessage.textContent =
       "Thank you. Your estimate request is ready to be connected to email.";
-
-    form.reset();
   });
 }
 
