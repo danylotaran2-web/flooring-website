@@ -288,13 +288,21 @@ body {
     letter-spacing: 0.06em;
 }
 
+.manager-note {
+    max-width: 760px;
+    margin: 28px 0 0;
+    color: var(--soft);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
 .website-images-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .website-image-editor {
@@ -322,11 +330,47 @@ body {
     letter-spacing: 0.18em;
 }
 
-.website-image-editor .save-project,
-.website-image-editor .save-image {
+.slot-path {
+    margin: 0 0 10px;
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--soft);
+}
+
+.slot-note {
+    margin: 0 0 18px;
+    color: var(--soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.choose-button {
     width: 100%;
-    margin-top: 24px;
-    padding: 22px 24px;
+    margin-top: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.choose-button input {
+    display: none;
+}
+
+.prepare-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 20px 22px;
     border: 0;
     background: var(--ink);
     color: white;
@@ -340,15 +384,21 @@ body {
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.website-image-editor .save-project:hover,
-.website-image-editor .save-image:hover {
+.prepare-button:hover {
     transform: translateY(-3px);
     opacity: 0.9;
 }
 
-.website-image-editor .save-project span,
-.website-image-editor .save-image span {
+.prepare-button span {
     font-size: 23px;
+}
+
+.slot-status {
+    min-height: 38px;
+    margin-top: 14px;
+    color: var(--soft);
+    font-size: 13px;
+    line-height: 1.6;
 }
 
 #imageManagerMessage {

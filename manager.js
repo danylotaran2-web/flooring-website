@@ -33,53 +33,67 @@ const defaultProjects = [
 
 const websiteImageConfig = [
     {
-        id: "hero-background",
-        name: "HERO BACKGROUND",
+        id: "hero-main",
+        name: "HERO / MAIN BACKGROUND IMAGE",
         selector: ".hero-image",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2400&q=90"
+        outputName: "hero-main.jpeg",
+        publicPath: "images/hero-main.jpeg",
+        fallback: "images/hero-main.jpeg"
     },
     {
-        id: "statement-image",
+        id: "transform-section",
         name: "TRANSFORM SECTION IMAGE",
         selector: ".statement-image",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=90"
+        outputName: "transform-section.jpeg",
+        publicPath: "images/transform-section.jpeg",
+        fallback: "images/transform-section.jpeg"
+    },
+    {
+        id: "precision-background",
+        name: "PRECISION / CRAFT / QUALITY BACKGROUND",
+        selector: ".experience-background",
+        type: "background",
+        outputName: "precision-background.jpeg",
+        publicPath: "images/precision-background.jpeg",
+        fallback: "images/precision-background.jpeg"
     },
     {
         id: "project-1",
-        name: "SELECTED WORK 01",
+        name: "PROJECT 01",
         selector: ".project-image-one",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=90"
+        outputName: "project-1.jpeg",
+        publicPath: "images/project-1.jpeg",
+        fallback: "images/project-1.jpeg"
     },
     {
         id: "project-2",
-        name: "SELECTED WORK 02",
+        name: "PROJECT 02",
         selector: ".project-image-two",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1500&q=90"
+        outputName: "project-2.jpeg",
+        publicPath: "images/project-2.jpeg",
+        fallback: "images/project-2.jpeg"
     },
     {
         id: "project-3",
-        name: "SELECTED WORK 03",
+        name: "PROJECT 03",
         selector: ".project-image-three",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&w=1500&q=90"
+        outputName: "project-3.jpeg",
+        publicPath: "images/project-3.jpeg",
+        fallback: "images/project-3.jpeg"
     },
     {
         id: "project-4",
-        name: "SELECTED WORK 04",
+        name: "PROJECT 04",
         selector: ".project-image-four",
         type: "background",
-        fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90"
-    },
-    {
-        id: "experience-background",
-        name: "EXPERIENCE BACKGROUND",
-        selector: ".experience-background",
-        type: "background",
-        fallback: "https://images.unsplash.com/photo-1600585152915-d208bec867a1?auto=format&fit=crop&w=2400&q=90"
+        outputName: "project-4.jpeg",
+        publicPath: "images/project-4.jpeg",
+        fallback: "images/project-4.jpeg"
     }
 ];
 
@@ -256,6 +270,14 @@ function applyWebsiteImage(slot, source, preview) {
     }
 }
 
+function setSlotStatus(slotId, message) {
+    const status = document.getElementById(`status-${slotId}`);
+
+    if (status) {
+        status.textContent = message;
+    }
+}
+
 function renderWebsiteImageEditors() {
     if (!websiteImagesGrid) {
         return;
@@ -272,13 +294,19 @@ function renderWebsiteImageEditors() {
                 </div>
 
                 <div class="editor-content">
-                    <label>${slot.name}</label>
-                    <input type="file" id="image-${slot.id}" accept="image/*">
+                    <p class="slot-path">Permanent public file: ${slot.publicPath}</p>
+                    <p class="slot-note">Download the prepared image and replace the matching file inside the /images folder.</p>
+                    <label class="choose-button" for="image-${slot.id}">
+                        <input type="file" id="image-${slot.id}" accept="image/*">
+                        <span id="label-${slot.id}">CHOOSE PHOTO</span>
+                    </label>
 
-                    <button class="save-image" data-slot="${slot.id}">
-                        SAVE IMAGE
+                    <button class="prepare-button" data-slot="${slot.id}" type="button">
+                        DOWNLOAD / PREPARE PHOTO
                         <span>↗</span>
                     </button>
+
+                    <p class="slot-status" id="status-${slot.id}">Current preview is ready for ${slot.publicPath}.</p>
                 </div>
             </article>
         `;
@@ -287,15 +315,44 @@ function renderWebsiteImageEditors() {
     websiteImageConfig.forEach((slot) => {
         const input = document.getElementById(`image-${slot.id}`);
         const preview = document.getElementById(`preview-${slot.id}`);
-        const saveButton = document.querySelector(
-            `.save-image[data-slot="${slot.id}"]`
+        const buttonLabel = document.getElementById(`label-${slot.id}`);
+        const prepareButton = document.querySelector(
+            `.prepare-button[data-slot="${slot.id}"]`
         );
+        const selectedFiles = {};
 
         if (input && preview) {
             input.addEventListener("change", function () {
                 const file = this.files[0];
 
                 if (!file) {
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    preview.src = event.target.result;
+                    preview.dataset.newImage = event.target.result;
+                    selectedFiles[slot.id] = file;
+
+                    if (buttonLabel) {
+                        buttonLabel.textContent = "REPLACE PHOTO";
+                    }
+
+                    setSlotStatus(slot.id, `Selected for ${slot.publicPath}.`);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        if (prepareButton && preview) {
+            prepareButton.addEventListener("click", function () {
+                const file = selectedFiles[slot.id];
+
+                if (!file) {
+                    setSlotStatus(slot.id, `Choose a photo first. This slot will use ${slot.publicPath}.`);
                     return;
                 }
 
@@ -313,11 +370,7 @@ function renderWebsiteImageEditors() {
                         let height = img.height;
 
                         if (width > maxWidth || height > maxHeight) {
-                            const ratio = Math.min(
-                                maxWidth / width,
-                                maxHeight / height
-                            );
-
+                            const ratio = Math.min(maxWidth / width, maxHeight / height);
                             width = Math.round(width * ratio);
                             height = Math.round(height * ratio);
                         }
@@ -328,46 +381,29 @@ function renderWebsiteImageEditors() {
                         const ctx = canvas.getContext("2d");
                         ctx.drawImage(img, 0, 0, width, height);
 
-                        const compressedImage = canvas.toDataURL(
-                            "image/jpeg",
-                            0.86
-                        );
+                        canvas.toBlob(function (blob) {
+                            if (!blob) {
+                                setSlotStatus(slot.id, "The photo could not be prepared. Please try another file.");
+                                return;
+                            }
 
-                        preview.src = compressedImage;
-                        preview.dataset.newImage = compressedImage;
+                            const link = document.createElement("a");
+                            const objectUrl = URL.createObjectURL(blob);
+                            link.href = objectUrl;
+                            link.download = slot.outputName;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            URL.revokeObjectURL(objectUrl);
+
+                            setSlotStatus(slot.id, `Prepared and downloaded as ${slot.outputName}. Replace the matching file in ${slot.publicPath}.`);
+                        }, "image/jpeg", 0.92);
                     };
 
                     img.src = event.target.result;
                 };
 
                 reader.readAsDataURL(file);
-            });
-        }
-
-        if (saveButton && preview) {
-            saveButton.addEventListener("click", function () {
-                const source = preview.dataset.newImage || preview.dataset.currentImage || slot.fallback;
-
-                websiteImages[slot.id] = source;
-
-                try {
-                    localStorage.setItem(
-                        "daniloWebsiteImages",
-                        JSON.stringify(websiteImages)
-                    );
-
-                    applyWebsiteImage(slot, source, preview);
-
-                    imageManagerMessage.textContent =
-                        `${slot.name} SAVED SUCCESSFULLY.`;
-
-                    setTimeout(() => {
-                        imageManagerMessage.textContent = "";
-                    }, 3000);
-                } catch (error) {
-                    imageManagerMessage.textContent =
-                        "IMAGE IS TOO LARGE. TRY A SMALLER PHOTO.";
-                }
             });
         }
 
