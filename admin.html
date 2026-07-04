@@ -11,53 +11,179 @@
 
 <body>
 
-    <main class="admin-login">
+    <main class="admin-shell">
 
-        <div class="admin-brand">
-            <div class="admin-logo">D</div>
+        <section id="loginView" class="admin-login">
 
-            <div>
-                <h1>DANILO'S</h1>
-                <p>FLOORING & STAIRS</p>
+            <div class="admin-brand">
+                <div class="admin-logo">D</div>
+
+                <div>
+                    <h1>DANILO'S</h1>
+                    <p>FLOORING & STAIRS</p>
+                </div>
             </div>
-        </div>
 
-        <section class="login-card">
+            <section class="login-card">
 
-            <p class="small-title">PRIVATE ADMIN AREA</p>
+                <p class="small-title">PRIVATE ADMIN AREA</p>
 
-            <h2>WELCOME BACK.</h2>
+                <h2>WELCOME BACK.</h2>
 
-            <p class="login-description">
-                Sign in to manage your website.
+                <p class="login-description">
+                    Sign in to prepare project photos for the public gallery.
+                </p>
+
+                <form id="loginForm">
+
+                    <label for="password">ADMIN PASSWORD</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button type="submit">
+                        ENTER ADMIN
+                        <span>↗</span>
+                    </button>
+
+                    <p id="loginError"></p>
+
+                </form>
+
+            </section>
+
+            <p class="admin-footer">
+                DANILO'S FLOORING & STAIRS · ADMIN
             </p>
-
-            <form id="loginForm">
-
-                <label for="password">ADMIN PASSWORD</label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                    autocomplete="current-password"
-                    required
-                >
-
-                <button type="submit">
-                    ENTER ADMIN
-                    <span>↗</span>
-                </button>
-
-                <p id="loginError"></p>
-
-            </form>
 
         </section>
 
-        <p class="admin-footer">
-            DANILO'S FLOORING & STAIRS · ADMIN
-        </p>
+        <section id="managerView" class="admin-manager" hidden>
+
+            <header class="admin-header">
+                <div class="admin-brand">
+                    <div class="admin-logo">D</div>
+
+                    <div>
+                        <h1>DANILO'S</h1>
+                        <p>FLOORING & STAIRS</p>
+                    </div>
+                </div>
+
+                <button id="logoutButton" class="logout-button" type="button">LOG OUT</button>
+            </header>
+
+            <section class="manager-panel">
+
+                <div class="manager-intro">
+                    <p class="small-title">PRIVATE ADMIN AREA</p>
+                    <h2>FOUR PROJECT PHOTOS.</h2>
+                    <p>
+                        Choose a local JPG, JPEG, PNG, or WEBP file for each project.
+                        Each save prepares a permanent photo file for the public gallery.
+                    </p>
+                </div>
+
+                <div class="project-grid-admin">
+
+                    <article class="project-editor">
+                        <div class="preview-frame">
+                            <img id="preview1" src="images/project-1.jpeg" alt="Project 01 preview">
+                        </div>
+
+                        <div class="project-body">
+                            <h3>PROJECT 01</h3>
+                            <p class="filename-label">Permanent public file: images/project-1.jpeg</p>
+
+                            <label class="file-button" for="file1">
+                                <input type="file" id="file1" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                                <span id="buttonLabel1">CHOOSE PHOTO</span>
+                            </label>
+
+                            <button class="save-button" data-project="1" type="button">
+                                DOWNLOAD / PREPARE PHOTO
+                            </button>
+
+                            <p id="status1" class="status-text">Current preview is ready for the public slot.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-editor">
+                        <div class="preview-frame">
+                            <img id="preview2" src="images/project-2.jpeg" alt="Project 02 preview">
+                        </div>
+
+                        <div class="project-body">
+                            <h3>PROJECT 02</h3>
+                            <p class="filename-label">Permanent public file: images/project-2.jpeg</p>
+
+                            <label class="file-button" for="file2">
+                                <input type="file" id="file2" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                                <span id="buttonLabel2">CHOOSE PHOTO</span>
+                            </label>
+
+                            <button class="save-button" data-project="2" type="button">
+                                DOWNLOAD / PREPARE PHOTO
+                            </button>
+
+                            <p id="status2" class="status-text">Current preview is ready for the public slot.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-editor">
+                        <div class="preview-frame">
+                            <img id="preview3" src="images/project-3.jpeg" alt="Project 03 preview">
+                        </div>
+
+                        <div class="project-body">
+                            <h3>PROJECT 03</h3>
+                            <p class="filename-label">Permanent public file: images/project-3.jpeg</p>
+
+                            <label class="file-button" for="file3">
+                                <input type="file" id="file3" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                                <span id="buttonLabel3">CHOOSE PHOTO</span>
+                            </label>
+
+                            <button class="save-button" data-project="3" type="button">
+                                DOWNLOAD / PREPARE PHOTO
+                            </button>
+
+                            <p id="status3" class="status-text">Current preview is ready for the public slot.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-editor">
+                        <div class="preview-frame">
+                            <img id="preview4" src="images/project-4.jpeg" alt="Project 04 preview">
+                        </div>
+
+                        <div class="project-body">
+                            <h3>PROJECT 04</h3>
+                            <p class="filename-label">Permanent public file: images/project-4.jpeg</p>
+
+                            <label class="file-button" for="file4">
+                                <input type="file" id="file4" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                                <span id="buttonLabel4">CHOOSE PHOTO</span>
+                            </label>
+
+                            <button class="save-button" data-project="4" type="button">
+                                DOWNLOAD / PREPARE PHOTO
+                            </button>
+
+                            <p id="status4" class="status-text">Current preview is ready for the public slot.</p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
+
+        </section>
 
     </main>
 
